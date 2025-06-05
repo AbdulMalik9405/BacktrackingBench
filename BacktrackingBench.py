@@ -77,3 +77,30 @@ for i in range(3):
     P2 = P3
     P3 = Holder
 
+# Recursive Method
+
+Bench = []
+ValidBench = []
+people  = ["B1", "B2", "G"]
+
+def BenchCheck():
+    global Bench, people
+    for person in people:
+        Bench.append(person)
+        if ValidCheck() and len(Bench) == 3:
+            ValidBench.append(Bench.copy())
+        elif ValidCheck() and len(Bench) < 3:
+            BenchCheck()
+        Bench.pop()
+
+def ValidCheck():
+    global flag
+    if len(Bench) < 2:
+        return True
+    elif Bench[1] == "G" or len(Bench) > 3 or len(Bench) != len(set(Bench)):
+        return False
+    else:
+        return True
+        
+BenchCheck()
+print(ValidBench)
